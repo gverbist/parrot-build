@@ -5,6 +5,12 @@
     state: present
   become: true
   become_method: sudo
+- name: Clone tmux plugin manager (tpm)
+  ansible.builtin.git:
+     repo: https://github.com/tmux-plugins/tpm
+     dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+     update: yes
+
 - name: "Copying Tmux Config"
   copy:
     src: "{{ role_path }}/files/.tmux.conf"
